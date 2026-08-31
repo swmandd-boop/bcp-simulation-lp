@@ -189,6 +189,17 @@ footer .fname{font-family:'Shippori Mincho',serif;color:#fff;font-size:14px;font
 footer .fname small{display:block;font-size:10px;letter-spacing:.14em;color:#8A93AC;font-weight:400}
 footer a{color:#E8C877;text-decoration:none}
 
+/* floating CTA */
+.float-cta{position:fixed;right:20px;bottom:20px;z-index:60;background:#fff;border:1px solid var(--line);border-top:3px solid var(--red);border-radius:3px;box-shadow:0 12px 34px rgba(20,31,61,.22);padding:22px 22px 20px;max-width:320px;width:calc(100vw - 40px);opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity .45s ease,transform .45s ease}
+.float-cta.show{opacity:1;transform:none;pointer-events:auto}
+.fc-close{position:absolute;top:6px;right:8px;border:none;background:none;font-size:18px;line-height:1;color:#8A8FA0;cursor:pointer;padding:6px}
+.fc-close:hover{color:var(--navy)}
+.fc-title{font-family:'Shippori Mincho',serif;font-weight:700;font-size:15.5px;color:var(--navy);margin-bottom:6px;padding-right:14px}
+.fc-text{font-size:12.5px;color:#4A5261;line-height:1.8;margin-bottom:14px}
+.fc-btn{display:block;text-align:center;background:var(--navy);color:#fff;text-decoration:none;font-weight:700;font-size:13px;letter-spacing:.06em;padding:11px 10px;border-radius:2px;transition:opacity .2s}
+.fc-btn:hover{opacity:.85}
+@media (prefers-reduced-motion:reduce){.float-cta{transition:none}}
+
 .rv{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
 .rv.on{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}.card-inner{transition:none}}
@@ -517,6 +528,13 @@ footer a{color:#E8C877;text-decoration:none}
   </div>
 </footer>
 
+<div class="float-cta" id="floatCta" role="complementary" aria-label="BCP診断ツールのご案内" hidden>
+  <button class="fc-close" id="fcClose" type="button" aria-label="閉じる">×</button>
+  <p class="fc-title">そのBCP、まずはセルフチェック</p>
+  <p class="fc-text">Webで回答できる「BCP診断ツール」で、自施設のBCPの現在地を確認できます。</p>
+  <a class="fc-btn" href="https://tools.swmd2023.com/bcp-check/" target="_blank" rel="noopener">BCP診断ツールを開く</a>
+</div>
+
 <script>
 // ---- 状況カード：サンプルデモ ----
 const cards=[
@@ -553,6 +571,30 @@ drawBtn.addEventListener("click",()=>{
 // ---- スクロール表示 ----
 const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("on");io.unobserve(e.target);}})},{threshold:.12});
 document.querySelectorAll(".rv").forEach(el=>io.observe(el));
+// ---- フローティングCTA（スクロール連動・閉じるボタン付き） ----
+(function(){
+  const box=document.getElementById("floatCta");
+  const closeBtn=document.getElementById("fcClose");
+  const trigger=document.getElementById("how");        // 「HOW IT WORKS」到達で表示
+  const stop=document.getElementById("contact");       // CTAセクションでは重複するため隠す
+  if(!box||!trigger||!stop)return;
+  let dismissed=false;
+  try{dismissed=sessionStorage.getItem("fcClosed")==="1";}catch(e){}
+  function update(){
+    if(dismissed){box.classList.remove("show");return;}
+    const past=window.scrollY+window.innerHeight*0.6>trigger.offsetTop;
+    const atCta=window.scrollY+window.innerHeight>stop.offsetTop+80;
+    if(past&&!atCta){box.hidden=false;requestAnimationFrame(()=>box.classList.add("show"));}
+    else{box.classList.remove("show");}
+  }
+  closeBtn.addEventListener("click",()=>{
+    dismissed=true;box.classList.remove("show");
+    try{sessionStorage.setItem("fcClosed","1");}catch(e){}
+  });
+  window.addEventListener("scroll",update,{passive:true});
+  window.addEventListener("resize",update);
+  update();
+})();
 </script>
 </body>
 </html>
