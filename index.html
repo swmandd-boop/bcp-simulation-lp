@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BCPシミュレーション研修｜株式会社福祉マネジメント＆デザイン</title>
+<meta name="description" content="そのBCP、本当に災害時に使えますか？32枚の状況カードで災害発生後を疑似体験。福祉・介護現場のための実践型BCPシミュレーション研修。作ったBCPを、使えるBCPへ。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1C2B55;
+  --navy-deep:#141F3D;
+  --gold:#B8933F;
+  --gold-soft:#F5EEDD;
+  --red:#B0372A;
+  --ink:#26303F;
+  --paper:#FBFAF6;
+  --line:#DCD9CF;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Zen Kaku Gothic New',sans-serif;color:var(--ink);background:var(--paper);line-height:1.95;font-size:16px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:980px;margin:0 auto;padding:0 24px}
+.eyebrow{font-size:12px;letter-spacing:.26em;color:var(--gold);font-weight:700;margin-bottom:16px}
+section{padding:88px 0}
+h2{font-family:'Shippori Mincho',serif;font-size:clamp(24px,4vw,32px);font-weight:600;line-height:1.6;margin-bottom:32px;color:var(--navy)}
+em{font-style:normal;color:var(--red);font-weight:700}
+a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+header{background:#fff;border-bottom:2px solid var(--navy);padding:14px 0;position:sticky;top:0;z-index:20}
+header .wrap{display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'Shippori Mincho',serif;font-weight:700;font-size:14px;letter-spacing:.05em;color:var(--navy)}
+.logo small{display:block;font-size:9.5px;letter-spacing:.18em;color:#8A8FA0;font-weight:500}
+.head-cta{font-size:13px;font-weight:700;color:#fff;background:var(--navy);padding:10px 22px;border-radius:2px;text-decoration:none;letter-spacing:.08em;transition:opacity .2s}
+.head-cta:hover{opacity:.85}
+.hd-links{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.head-cta.ghost{background:#fff;color:var(--navy);border:1.5px solid var(--navy)}
+
+/* hero */
+.hero{background:#fff;padding:88px 0 64px;border-bottom:6px solid var(--navy)}
+.hero .to{font-size:13.5px;color:#4A5261;letter-spacing:.06em;margin-bottom:22px}
+.hero .year{display:inline-block;background:var(--navy);color:#fff;font-family:'Shippori Mincho',serif;font-size:15px;font-weight:600;letter-spacing:.14em;padding:6px 18px;margin-bottom:24px}
+.hero h1{font-family:'Shippori Mincho',serif;font-size:clamp(32px,5.6vw,52px);font-weight:800;line-height:1.5;color:var(--navy);letter-spacing:.02em;margin-bottom:22px}
+.hero .sub{font-family:'Shippori Mincho',serif;font-size:clamp(17px,2.6vw,22px);font-weight:600;color:var(--red);border-bottom:3px solid var(--red);display:inline-block;padding-bottom:8px;margin-bottom:32px}
+.hero .lead{font-size:15px;color:#4A5261;max-width:640px;margin-bottom:36px}
+.hero-flags{display:flex;gap:12px;flex-wrap:wrap}
+.flag{border:1.5px solid var(--navy);border-radius:2px;padding:8px 18px;font-size:13.5px;letter-spacing:.06em;color:var(--navy);font-weight:700;background:#fff}
+.flag.hot{background:var(--red);border-color:var(--red);color:#fff}
+
+/* pains */
+.pains-sec{background:var(--paper)}
+.p-lead{font-size:15px;max-width:700px;margin-bottom:40px;color:#3B4453}
+.o-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.o-item{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:3px;padding:20px 22px;font-size:14.5px}
+.o-item .mk{flex:none;width:22px;height:22px;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin-top:4px}
+.o-item .mk.bad{background:var(--red)}
+.p-close{margin-top:40px;font-family:'Shippori Mincho',serif;font-size:clamp(17px,2.4vw,21px);font-weight:600;color:var(--navy)}
+.tool-banner{margin-top:36px;background:#fff;border:1px solid var(--gold);border-left:4px solid var(--gold);border-radius:3px;padding:24px 28px;display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap;max-width:860px}
+.tool-banner .t{font-size:13.5px;color:#4A5261;line-height:1.85;flex:1 1 380px}
+.tool-banner .t b{display:block;font-family:'Shippori Mincho',serif;color:var(--navy);font-size:16.5px;font-weight:700;margin-bottom:4px}
+.tb-btn{flex:none;background:var(--navy);color:#fff;text-decoration:none;font-weight:700;font-size:13.5px;padding:12px 26px;border-radius:2px;letter-spacing:.06em;transition:opacity .2s}
+.tb-btn:hover{opacity:.85}
+
+/* solution */
+.solution{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.bg-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start}
+.bg-text p{font-size:14.5px;color:#3B4453;margin-bottom:18px}
+.exp-list{display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 22px}
+.exp{flex:1 1 90px;text-align:center;background:#fff;border:1px solid var(--line);border-top:3px solid var(--navy);border-radius:2px;padding:12px 6px;font-family:'Shippori Mincho',serif;font-weight:700;font-size:14.5px;color:var(--navy);letter-spacing:.06em}
+.flow-mini{margin-top:24px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px;font-weight:700}
+.flow-mini b{background:var(--gold-soft);color:var(--gold);border:1px solid var(--gold);border-radius:2px;padding:4px 12px;letter-spacing:.06em}
+.flow-mini i{color:var(--gold);font-style:normal}
+
+/* deck (signature) */
+.deck-area{background:var(--navy);border-radius:3px;padding:40px 28px;color:#fff;text-align:center}
+.deck-area .eyebrow{margin-bottom:8px}
+.deck-title{font-family:'Shippori Mincho',serif;font-weight:700;font-size:clamp(19px,2.6vw,24px);margin-bottom:4px}
+.deck-hint{font-size:12.5px;color:#9AA3B8;margin-bottom:26px}
+.card-stage{perspective:1200px;max-width:400px;margin:0 auto}
+.sim-card{position:relative;width:100%;aspect-ratio:5/3;cursor:pointer;border:none;background:transparent;padding:0;font-family:inherit}
+.card-inner{position:absolute;inset:0;transition:transform .6s;transform-style:preserve-3d}
+.sim-card.flipped .card-inner{transform:rotateY(180deg)}
+.card-face{position:absolute;inset:0;backface-visibility:hidden;border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px}
+.card-front{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.22);box-shadow:0 12px 40px rgba(0,0,0,.35)}
+.card-front::before{content:"";position:absolute;inset:8px;border:1px solid rgba(232,200,119,.5);border-radius:3px}
+.card-front .cf-mark{font-family:'Shippori Mincho',serif;font-weight:700;font-size:28px;letter-spacing:.14em;color:#E8C877}
+.card-front .cf-sub{font-size:10.5px;letter-spacing:.34em;margin-top:8px;color:#9AA3B8}
+.card-front .cf-tap{margin-top:20px;font-size:12px;border:1px solid rgba(232,200,119,.55);border-radius:999px;padding:6px 18px;color:#E8C877}
+.card-back{background:#fff;color:var(--ink);transform:rotateY(180deg);box-shadow:0 12px 40px rgba(0,0,0,.35);text-align:center;border-top:4px solid var(--red)}
+.card-back .cb-no{font-size:11px;letter-spacing:.26em;color:var(--gold);font-weight:700}
+.card-back .cb-title{font-family:'Shippori Mincho',serif;font-weight:700;font-size:20px;margin:8px 0 10px;color:var(--navy)}
+.card-back .cb-body{font-size:13px;color:#4A5261;line-height:1.85}
+.deck-q{margin-top:26px;font-family:'Shippori Mincho',serif;font-weight:600;font-size:16px}
+.deck-btn{margin-top:16px;background:transparent;border:1px solid #E8C877;color:#E8C877;border-radius:2px;padding:10px 26px;font-weight:700;font-size:13.5px;cursor:pointer;font-family:inherit;letter-spacing:.08em;transition:opacity .2s}
+.deck-btn:hover{opacity:.8}
+.deck-note{margin-top:22px;font-size:11.5px;color:#9AA3B8;line-height:1.8;text-align:left}
+
+/* asks */
+.ask-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:8px}
+.ask{background:#fff;border:1px solid var(--line);border-left:4px solid var(--navy);border-radius:3px;padding:16px 20px;font-size:14.5px;font-weight:700;color:var(--navy)}
+.ask-close{margin-top:36px;font-size:14.5px;color:#3B4453;max-width:760px}
+
+/* compare */
+.cmp-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.cmp{background:#fff;border:1px solid var(--line);border-radius:3px;padding:32px 28px}
+.cmp.is-us{border:2px solid var(--navy);position:relative}
+.cmp.is-us::before{content:"BCPシミュレーション研修";position:absolute;top:-14px;left:22px;background:var(--navy);color:#fff;font-size:12px;font-weight:700;padding:4px 16px;letter-spacing:.1em;border-radius:2px}
+.cmp h3{font-family:'Shippori Mincho',serif;font-size:16px;font-weight:700;color:var(--navy);margin-bottom:16px}
+.cmp ul{list-style:none}
+.cmp li{padding:10px 0 10px 26px;position:relative;font-size:14px;border-top:1px solid var(--line);color:#3B4453}
+.cmp li:first-child{border-top:none}
+.cmp li::before{content:"—";position:absolute;left:2px;color:#8A8FA0}
+.cmp.is-us li::before{content:"●";color:var(--gold);font-size:8px;top:16px}
+.cmp.is-us li{color:var(--ink)}
+
+/* tools */
+.tools-sec{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.tool{background:var(--paper);border:1px solid var(--line);border-top:4px solid var(--navy);border-radius:3px;padding:36px 30px}
+.tool .num{font-family:'Shippori Mincho',serif;font-size:44px;font-weight:700;color:var(--navy);line-height:1.3}
+.tool .num small{font-size:15px;font-weight:500;color:#7A8090;margin-left:6px}
+.tool h3{font-family:'Shippori Mincho',serif;font-size:17px;font-weight:700;color:var(--navy);margin:10px 0 12px}
+.tool p{font-size:14px;color:#4A5261}
+.tags{margin-top:18px;display:flex;flex-wrap:wrap;gap:6px}
+.tags span{background:var(--gold-soft);color:var(--gold);border:1px solid var(--gold);font-size:12px;font-weight:700;padding:3px 12px;border-radius:2px;letter-spacing:.04em}
+
+/* before/after */
+.ba{display:grid;grid-template-columns:1fr auto 1fr;gap:22px;align-items:stretch}
+.ba-col{background:#fff;border:1px solid var(--line);border-radius:3px;padding:30px 28px}
+.ba-col.after{border:2px solid var(--gold);background:#fff}
+.ba-col h3{font-size:12.5px;letter-spacing:.24em;font-weight:700;margin-bottom:14px;color:#7A8090}
+.ba-col.after h3{color:var(--gold)}
+.ba-col li{list-style:none;font-size:14px;padding:9px 0;border-top:1px solid var(--line);color:#3B4453}
+.ba-col li:first-child{border-top:none}
+.ba-col.after li{color:var(--ink)}
+.ba-arrow{align-self:center;font-family:'Shippori Mincho',serif;font-size:26px;color:var(--gold)}
+.ba-close{margin-top:36px;font-size:14.5px;color:#3B4453;max-width:760px}
+
+/* versions (navy) */
+.versions{background:var(--navy);color:#fff}
+.versions .eyebrow{color:var(--gold)}
+.versions h2{color:#fff}
+.versions .intro{font-size:14.5px;color:#C6CBD8;max-width:720px;margin-bottom:48px}
+.dl-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.dl-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.22);border-radius:3px;padding:32px 28px}
+.dl-card .date{font-family:'Shippori Mincho',serif;font-size:24px;font-weight:700;color:#E8C877;line-height:1.4;margin-bottom:12px}
+.dl-card p{font-size:13.5px;color:#C6CBD8;line-height:1.85}
+.ver-note{margin-top:18px;font-size:12.5px;color:#9AA3B8;line-height:1.8}
+.tg-wrap{margin-top:56px}
+.tg-wrap h3{font-family:'Shippori Mincho',serif;font-size:18px;font-weight:700;margin-bottom:8px}
+.tg-wrap .tg-lead{font-size:13.5px;color:#C6CBD8;margin-bottom:22px}
+.targets{display:flex;flex-wrap:wrap;gap:10px}
+.targets span{border:1px solid rgba(255,255,255,.35);border-radius:2px;padding:7px 16px;font-size:13px;font-weight:500;color:#E8ECF2}
+
+/* flow */
+.flow ol{list-style:none;counter-reset:step;max-width:720px}
+.flow li{counter-increment:step;position:relative;padding:0 0 32px 64px}
+.flow li::before{content:counter(step,decimal-leading-zero);position:absolute;left:0;top:-2px;font-family:'Shippori Mincho',serif;font-size:22px;font-weight:600;color:var(--gold)}
+.flow li::after{content:"";position:absolute;left:16px;top:36px;bottom:4px;width:1px;background:var(--line)}
+.flow li:last-child::after{display:none}
+.flow h3{font-size:15.5px;font-weight:700;margin-bottom:4px;color:var(--navy)}
+.flow p{font-size:14px;color:#4A5261}
+.flow-close{margin-top:8px;font-size:14.5px;color:#3B4453;max-width:760px}
+
+/* faq */
+.faq-sec{background:#fff;border-top:1px solid var(--line)}
+details{background:var(--paper);border:1px solid var(--line);border-radius:3px;margin-bottom:12px;max-width:820px}
+summary{cursor:pointer;font-weight:700;padding:18px 22px;font-size:14.5px;list-style:none;position:relative;padding-right:48px;color:var(--navy)}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"＋";position:absolute;right:20px;top:15px;color:var(--gold);font-size:18px}
+details[open] summary::after{content:"－"}
+details .a{padding:0 22px 20px;font-size:14px;color:#4A5261}
+
+/* cta */
+.cta{background:var(--navy);color:#fff;text-align:center}
+.cta .eyebrow{color:var(--gold)}
+.cta h2{color:#fff;margin-bottom:16px}
+.cta p{font-size:14.5px;color:#C6CBD8;max-width:600px;margin:0 auto 36px}
+.cta-btn{display:inline-block;background:var(--red);color:#fff;text-decoration:none;font-weight:700;font-size:16px;letter-spacing:.1em;padding:18px 56px;border-radius:2px;transition:opacity .2s}
+.cta-btn:hover{opacity:.85}
+.cta-note{margin-top:18px;font-size:13px;color:#9AA3B8}
+.cta-note a{color:#E8C877;text-decoration:none}
+
+footer{background:var(--navy-deep);color:#C6CBD8;padding:40px 0;font-size:13px}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+footer .fname{font-family:'Shippori Mincho',serif;color:#fff;font-size:14px;font-weight:600}
+footer .fname small{display:block;font-size:10px;letter-spacing:.14em;color:#8A93AC;font-weight:400}
+footer a{color:#E8C877;text-decoration:none}
+
+.rv{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+.rv.on{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}.card-inner{transition:none}}
+
+@media (max-width:860px){
+  .bg-grid{grid-template-columns:1fr}
+  .dl-grid{grid-template-columns:1fr}
+  .o-grid{grid-template-columns:1fr}
+  .cmp-grid{grid-template-columns:1fr}
+  .tool-grid{grid-template-columns:1fr}
+  .ba{grid-template-columns:1fr}
+  .ba-arrow{transform:rotate(90deg);justify-self:center}
+}
+@media (max-width:720px){
+  section{padding:64px 0}
+  .hero{padding:64px 0 52px}
+  .head-cta{font-size:11.5px;padding:8px 12px;letter-spacing:.04em}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="logo">福祉マネジメント＆デザイン<small>SOCIAL WELFARE MANAGEMENT &amp; DESIGN</small></div>
+    <div class="hd-links">
+      <a class="head-cta ghost" href="https://tools.swmd2023.com/bcp-check/" target="_blank" rel="noopener">BCP診断ツール</a>
+      <a class="head-cta" href="https://forms.gle/gCaTsmXKVRLt4Lxm6" target="_blank" rel="noopener">お問い合わせ</a>
+    </div>
+  </div>
+</header>
+
+<!-- ① 問題提起 -->
+<div class="hero">
+  <div class="wrap">
+    <p class="to">福祉・介護施設・事業所の管理者・BCP担当者・職員の皆さまへ</p>
+    <span class="year">実践型・参加型研修</span>
+    <h1>BCP<br>シミュレーション研修</h1>
+    <p class="sub">そのBCP、本当に災害時に使えますか？</p>
+    <p class="lead">32枚の「状況カード」で災害発生後を疑似体験。考える。話し合う。気づく。見直す。BCPを策定したことと、BCPが機能することは、同じではありません。自施設のBCPを用いて検証し、「作ったBCP」を「使えるBCP」に変える、福祉・介護現場のためのシミュレーション研修です。</p>
+    <div class="hero-flags">
+      <span class="flag">32枚の状況カード</span>
+      <span class="flag">自施設のBCPを用いて検証</span>
+      <span class="flag">施設版／在宅版</span>
+      <span class="flag">一般職員を含めた職員研修として実施可能</span>
+      <span class="flag hot">読むBCPから、動けるBCPへ</span>
+    </div>
+  </div>
+</div>
+
+<!-- ② よくある課題 -->
+<section class="pains-sec">
+  <div class="wrap">
+    <p class="eyebrow rv">COMMON ISSUES</p>
+    <h2 class="rv">こんな状態になって、<br>いませんか？</h2>
+    <p class="p-lead rv">福祉・介護の現場では、BCPの策定は進みました。しかし「策定した後」に、多くの事業所が同じ壁に突き当たっています。</p>
+    <div class="o-grid rv">
+      <div class="o-item"><span class="mk bad">✓</span>BCPを策定してから一度も見直していない</div>
+      <div class="o-item"><span class="mk bad">✓</span>BCPの内容を知っているのは管理職や担当者だけ</div>
+      <div class="o-item"><span class="mk bad">✓</span>研修や訓練をどう実施すればいいかわからない</div>
+      <div class="o-item"><span class="mk bad">✓</span>毎年同じ避難訓練を繰り返している</div>
+      <div class="o-item"><span class="mk bad">✓</span>災害時の職員不足まで想定できていない</div>
+      <div class="o-item"><span class="mk bad">✓</span>停電・断水・通信障害が同時に起きた場合を考えていない</div>
+      <div class="o-item"><span class="mk bad">✓</span>誰が意思決定するのか曖昧なまま</div>
+      <div class="o-item"><span class="mk bad">✓</span>BCPに書いてあることが本当に実行できるかわからない</div>
+    </div>
+    <p class="p-close rv">その課題を、<em>シミュレーションで見える化</em>します。</p>
+    <div class="tool-banner rv">
+      <div class="t">
+        <b>まずは、自施設のBCPをセルフチェック</b>
+        Webで回答できる「BCP診断ツール」を公開しています。研修をご検討の前に、現在地の確認にお使いください。
+      </div>
+      <a class="tb-btn" href="https://tools.swmd2023.com/bcp-check/" target="_blank" rel="noopener">BCP診断ツールを開く</a>
+    </div>
+  </div>
+</section>
+
+<!-- ③ 解決策＋⑥ 状況カード -->
+<section class="solution" id="solution">
+  <div class="wrap">
+    <p class="eyebrow rv">SOLUTION</p>
+    <h2 class="rv">BCPを「作る」研修ではなく、<br>「使ってみる」研修です。</h2>
+    <div class="bg-grid">
+      <div class="bg-text rv">
+        <p>BCPシミュレーション研修は、BCPを「作る」「読む」研修ではありません。<em>災害発生後の状況を疑似体験しながら、自施設のBCPを用いて、実際に機能するかを検証する</em>実践型研修です。</p>
+        <p>正解を覚えるのではなく、「この状況なら、あなたたちの施設・事業所ではどうする？」を繰り返し問いかけます。参加者自身が考え、話し合い、自施設の課題を発見することを重視します。</p>
+        <p>そのため研修には、講義を聞くだけでは得られない、参加者自身がBCPを<em>「見る」「読む」「想像する」「言語化する」「振り返る」</em>体験を盛り込んでいます。</p>
+        <div class="exp-list">
+          <span class="exp">見る</span>
+          <span class="exp">読む</span>
+          <span class="exp">想像する</span>
+          <span class="exp">言語化する</span>
+          <span class="exp">振り返る</span>
+        </div>
+        <p>研修を通じて、次の流れをつくります。</p>
+        <div class="flow-mini">
+          <b>知る</b><i>→</i><b>考える</b><i>→</i><b>判断する</b><i>→</i><b>話し合う</b><i>→</i><b>課題を発見する</b><i>→</i><b>BCPを見直す</b>
+        </div>
+      </div>
+      <div class="rv">
+        <div class="deck-area">
+          <p class="eyebrow">SITUATION CARD</p>
+          <p class="deck-title">32枚の「状況カード」</p>
+          <p class="deck-hint">カードをタップして、1枚引いてみてください。</p>
+          <div class="card-stage">
+            <button class="sim-card" id="simCard" aria-label="状況カードをめくる">
+              <span class="card-inner">
+                <span class="card-face card-front">
+                  <span class="cf-mark">状況付与カード</span>
+                  <span class="cf-sub">SITUATION CARD</span>
+                  <span class="cf-tap">タップしてめくる</span>
+                </span>
+                <span class="card-face card-back">
+                  <span class="cb-no" id="cbNo"></span>
+                  <span class="cb-title" id="cbTitle"></span>
+                  <span class="cb-body" id="cbBody"></span>
+                </span>
+              </span>
+            </button>
+          </div>
+          <p class="deck-q">――あなたの施設なら、どうしますか？</p>
+          <button class="deck-btn" id="drawBtn" type="button">別のカードを引く</button>
+          <p class="deck-note">※ 研修では、職員の参集・安否確認・停電・断水・通信障害・食事・排泄・医療・感染症・家族対応・地域連携・優先業務の判断など、災害後に現場で実際に問題となる状況を扱います。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ④ 研修の仕組み：問いかけ -->
+<section id="how">
+  <div class="wrap">
+    <p class="eyebrow rv">HOW IT WORKS</p>
+    <h2 class="rv">「正しい答えを当てる」<br>研修ではありません。</h2>
+    <p class="p-lead rv">グループごとに状況カードを引き、その状況への対応を話し合います。単純な防災クイズにはしません。問いかけるのは、いつも自施設のことです。</p>
+    <div class="ask-grid rv">
+      <div class="ask">自施設なら、どうするか</div>
+      <div class="ask">誰が判断するか</div>
+      <div class="ask">誰が動くか</div>
+      <div class="ask">何を優先するか</div>
+      <div class="ask">必要な物品や情報はあるか</div>
+      <div class="ask">現在のBCPに記載されているか</div>
+      <div class="ask">実際に実行できる体制になっているか</div>
+    </div>
+    <p class="ask-close rv">単に「備蓄がありますか？」を確認するのではなく、<em>限られた人員・物資・情報の中で、何を優先し、どのように事業を継続するのか</em>——BCP本来の考え方を体験します。</p>
+  </div>
+</section>
+
+<!-- ⑤ 一般的な研修との違い -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow rv">DIFFERENCE</p>
+    <h2 class="rv">一般的なBCP研修との違い</h2>
+    <div class="cmp-grid rv">
+      <div class="cmp">
+        <h3>一般的なBCP研修</h3>
+        <ul>
+          <li>BCPとは何かを講義形式で学ぶ</li>
+          <li>策定のポイント・法令上の必要事項を確認する</li>
+          <li>知識は増えるが、自施設の検証はしない</li>
+          <li>聞いて終わり、になりやすい</li>
+        </ul>
+      </div>
+      <div class="cmp is-us">
+        <h3>災害後の状況を提示し、その場で対応を考える</h3>
+        <ul>
+          <li>参加型：参加者自身が考え、判断し、話し合う</li>
+          <li>自施設のBCPを用いて検証：一般論ではなく、自分たちの計画を確かめる</li>
+          <li>福祉・介護現場に特化：支援を止められない事業所が前提</li>
+          <li>正解を教えない：「自分たちならどう判断するか」を問う</li>
+          <li>BCPの弱点が見える：決まっていない・書いていない・知られていない・実行できない</li>
+          <li>研修後のBCP見直しにつながる</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑥⑦ 2つのツール -->
+<section class="tools-sec" id="tools">
+  <div class="wrap">
+    <p class="eyebrow rv">TOOLS</p>
+    <h2 class="rv">研修を支える、2つのツール</h2>
+    <div class="tool-grid rv">
+      <div class="tool">
+        <p class="num">32<small>枚</small></p>
+        <h3>状況カード</h3>
+        <p>災害発生後に起こり得る出来事を想定したカード。グループごとに引き、対応を検討します。防災クイズではなく、自施設の判断・体制・優先順位を話し合うための引き金です。</p>
+        <div class="tags"><span>職員の参集</span><span>安否確認</span><span>停電・断水</span><span>通信障害</span><span>食事・排泄</span><span>医療・服薬</span><span>感染症</span><span>家族対応</span><span>地域連携</span><span>優先業務の判断</span></div>
+      </div>
+      <div class="tool">
+        <p class="num">40<small>項目</small></p>
+        <h3>A3「事業継続計画のポイント」</h3>
+        <p>単なるチェックリストではありません。シミュレーションで気づいた課題を、自施設のBCP改善につなげるためのツールです。「決まっている」「書いてあるが知られていない」「そもそも決めていなかった」「実行できないかもしれない」を可視化します。</p>
+        <div class="tags"><span>シミュレーション</span><span>気づき</span><span>点検</span><span>改善</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑧ Before / After -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow rv">OUTCOME</p>
+    <h2 class="rv">研修によって期待できる変化</h2>
+    <div class="ba rv">
+      <div class="ba-col">
+        <h3>BEFORE</h3>
+        <ul>
+          <li>「BCPは担当者が作ったもの」</li>
+          <li>「BCPがどこにあるかわからない」</li>
+          <li>「災害が起きたら上司の指示を待つ」</li>
+          <li>「避難訓練をしているから大丈夫」</li>
+        </ul>
+      </div>
+      <div class="ba-arrow">→</div>
+      <div class="ba-col after">
+        <h3>AFTER</h3>
+        <ul>
+          <li>「自分なら何をするか考えられる」</li>
+          <li>「災害時の優先順位を考えられる」</li>
+          <li>「自施設のBCPの弱点がわかる」</li>
+          <li>「決めておくべきことがわかる」</li>
+          <li>「職員同士でBCPについて話し合える」</li>
+        </ul>
+      </div>
+    </div>
+    <p class="ba-close rv">研修を「楽しかった」「勉強になった」で終わらせず、<em>発見した課題をBCPや防災体制の改善につなげる</em>ことを重視しています。</p>
+  </div>
+</section>
+
+<!-- ⑨⑩ 施設版・在宅版／対象（紺セクション） -->
+<section class="versions" id="versions">
+  <div class="wrap">
+    <p class="eyebrow rv">VERSIONS</p>
+    <h2 class="rv">施設版と在宅版</h2>
+    <p class="intro rv">事業所の形態に合わせて、2つの版をご用意しています。</p>
+    <div class="dl-grid rv">
+      <div class="dl-card">
+        <p class="date">施設版</p>
+        <p>入所施設など、災害発生後も施設内で利用者への支援を継続する事業所を想定。32枚の状況カードを使用します。</p>
+      </div>
+      <div class="dl-card">
+        <p class="date">在宅版</p>
+        <p>地域の中でサービス提供を行う事業所を想定。地域包括支援センター・居宅介護支援事業所・通所介護が対象です。訪問系サービスは対象に含まれません。</p>
+      </div>
+    </div>
+    <p class="ver-note rv">※ 障害福祉サービスについては、施設系・通所系（生活介護、就労継続支援A型・B型など）に対応しています。</p>
+    <div class="tg-wrap rv">
+      <h3>主な対象</h3>
+      <p class="tg-lead">管理職・BCP担当者だけでなく、一般職員を含めた職員研修として実施できることも特徴です。</p>
+      <div class="targets">
+        <span>特別養護老人ホーム</span><span>養護老人ホーム</span><span>軽費老人ホーム</span><span>障害者支援施設</span><span>グループホーム</span><span>通所介護</span><span>地域包括支援センター</span><span>居宅介護支援事業所</span><span>障害福祉サービス事業所</span><span>社会福祉法人</span><span>福祉・介護事業者</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑪ 研修の流れ -->
+<section class="flow" id="flow">
+  <div class="wrap">
+    <p class="eyebrow rv">FLOW</p>
+    <h2 class="rv">研修のイメージ</h2>
+    <p class="p-lead rv">次のサイクルを繰り返しながら、自施設の課題を掘り下げていきます。</p>
+    <ol class="rv">
+      <li><h3>災害発生</h3><p>災害発生後の前提状況を共有します。</p></li>
+      <li><h3>状況カード提示</h3><p>グループごとにカードを引き、状況に直面します。</p></li>
+      <li><h3>グループで対応を検討</h3><p>自施設ならどうするか、誰が判断し誰が動くかを話し合います。</p></li>
+      <li><h3>対応・判断を共有</h3><p>グループごとの判断を発表し、違いに気づきます。</p></li>
+      <li><h3>講師による解説・問いかけ</h3><p>福祉現場の視点から、さらに深く問いかけます。</p></li>
+      <li><h3>自施設のBCP・体制を点検</h3><p>A3「事業継続計画のポイント」40項目で現状を点検します。</p></li>
+      <li><h3>改善すべき課題を整理</h3><p>研修後のBCP見直しにつなげる課題を整理します。</p></li>
+    </ol>
+    <p class="flow-close rv">さらに実践を深める発展型として、<em>「BCPファシリテーション研修」</em>も展開しています。一度学んで終わりではなく、繰り返し考える → 動く → 見直すことで、BCPを組織に定着させます。</p>
+  </div>
+</section>
+
+<!-- ⑬ FAQ -->
+<section class="faq-sec" id="faq">
+  <div class="wrap">
+    <p class="eyebrow rv">FAQ</p>
+    <h2 class="rv">よくあるご質問</h2>
+    <div class="rv">
+      <details>
+        <summary>管理職やBCP担当者だけでなく、一般職員も参加できますか？</summary>
+        <div class="a">はい。むしろ一般職員を含めた職員研修として実施できることが本研修の特徴です。参加型のため、一般職員もBCPを「自分ごと」として考えやすい構成になっています。</div>
+      </details>
+      <details>
+        <summary>入所施設ではなく、通所系や相談系の事業所でも実施できますか？</summary>
+        <div class="a">在宅版をご用意しています。地域包括支援センター・居宅介護支援事業所・通所介護が対象です。障害福祉サービスについては、施設系・通所系（生活介護、就労継続支援A型・B型など）に対応しています。なお、訪問系サービスは現在対象に含まれません。</div>
+      </details>
+      <details>
+        <summary>BCPの内容を職員がほとんど知らない状態でも大丈夫ですか？</summary>
+        <div class="a">「職員がBCPを知らない」こと自体が、本研修で扱う代表的な課題のひとつです。シミュレーションを通じて、決まっていないこと・知られていないことを可視化するところから始めます。</div>
+      </details>
+      <details>
+        <summary>防災クイズやゲームのような研修ですか？</summary>
+        <div class="a">カードを使う参加型研修ですが、正解を当てるクイズではありません。「自施設ならどう判断するか」を参加者同士で話し合い、自施設のBCPや事業継続体制の弱点を発見することが目的です。</div>
+      </details>
+      <details>
+        <summary>実施時間・人数・料金について教えてください。</summary>
+        <div class="a">施設・事業所の状況やご希望に応じてご提案します。まずはお気軽にお問い合わせください。</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ⑭ CTA -->
+<section class="cta" id="contact">
+  <div class="wrap">
+    <p class="eyebrow rv">CONTACT</p>
+    <h2 class="rv">BCPの完成度を高めるのは、<br>もう一度「作ること」ではなく、<br>一度「使ってみること」。</h2>
+    <p class="rv">研修のご相談・お見積りのご依頼を受け付けています。「うちの事業所でも実施できるか」といった段階のご相談も歓迎です。</p>
+    <div class="rv">
+      <a class="cta-btn" href="https://forms.gle/gCaTsmXKVRLt4Lxm6" target="_blank" rel="noopener">お問い合わせ・見積依頼</a>
+      <p class="cta-note">メールでのお問い合わせは <a href="mailto:sw.mandd@gmail.com">sw.mandd@gmail.com</a> まで</p>
+      <p class="cta-note">研修をご検討の前に：<a href="https://tools.swmd2023.com/bcp-check/" target="_blank" rel="noopener">BCP診断ツール</a>で自施設のBCPをセルフチェックできます</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fname">株式会社 福祉マネジメント＆デザイン<small>SOCIAL WELFARE MANAGEMENT &amp; DESIGN</small></div>
+    <div><a href="https://swmd2023.com" target="_blank" rel="noopener">swmd2023.com</a>　<span style="color:#8A93AC">© SWMD 2026.08版</span></div>
+  </div>
+</footer>
+
+<script>
+// ---- 状況カード：サンプルデモ ----
+const cards=[
+  {no:"状況付与カード 01",title:"断水が発生",body:"水がでません。復旧のめどがたっていません。"},
+  {no:"状況付与カード 02",title:"停電が発生",body:"電気がつきません。復旧のめどがたっていません。"},
+  {no:"状況付与カード 05",title:"職員の安否不明",body:"参集予定の職員と連絡が取れません。"},
+  {no:"状況付与カード 08",title:"BCPを知りません",body:"BCPを職員が知らないため、現場が混乱しています。"},
+  {no:"状況付与カード 11",title:"利用者に体調不良者が発生",body:"感染者を隔離し、クラスター発生を防止してください。"},
+  {no:"状況付与カード 13",title:"幹線道路が寸断",body:"幹線道路が通行止めとなり、職員が出勤できず、物資が届きません。"},
+  {no:"状況付与カード 16",title:"福祉避難所の開設要請",body:"避難者を地域交流スペースに受け入れます。"},
+  {no:"状況付与カード 20",title:"負傷した利用者の対応",body:"負傷した利用者を応急処置するため、職員が現場を離れます。"}
+];
+let idx=-1;
+const cardEl=document.getElementById("simCard");
+const drawBtn=document.getElementById("drawBtn");
+function setCard(){
+  let n;do{n=Math.floor(Math.random()*cards.length)}while(n===idx&&cards.length>1);
+  idx=n;const c=cards[idx];
+  document.getElementById("cbNo").textContent=c.no;
+  document.getElementById("cbTitle").textContent=c.title;
+  document.getElementById("cbBody").textContent=c.body;
+}
+cardEl.addEventListener("click",()=>{
+  if(!cardEl.classList.contains("flipped")){setCard();cardEl.classList.add("flipped");}
+  else{cardEl.classList.remove("flipped");}
+});
+drawBtn.addEventListener("click",()=>{
+  const reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(cardEl.classList.contains("flipped")){
+    if(reduce){setCard();}
+    else{cardEl.classList.remove("flipped");setTimeout(()=>{setCard();cardEl.classList.add("flipped");},350);}
+  }else{setCard();cardEl.classList.add("flipped");}
+});
+// ---- スクロール表示 ----
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("on");io.unobserve(e.target);}})},{threshold:.12});
+document.querySelectorAll(".rv").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
